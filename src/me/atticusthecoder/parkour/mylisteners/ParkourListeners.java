@@ -16,13 +16,11 @@ public class ParkourListeners implements Listener {
 	
 	@EventHandler
 	public void onParkourStart(ParkourStartEvent e) {
-		if(!ParkourManager.get().isDoingParkour(e.getPlayer())) {
-			e.getPlayer().sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "You started the parkour!");
-			ParkourManager.get().addToParkour(e.getPlayer());
-			
-			// Add their data
-			ParkourManager.get().createParkourData(e.getPlayer(), new ParkourData(e.getPlayer(), System.currentTimeMillis()));
-		}
+		e.getPlayer().sendMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "You started the parkour!");
+		ParkourManager.get().addToParkour(e.getPlayer());
+		
+		// Add their data
+		ParkourManager.get().createParkourData(e.getPlayer(), new ParkourData(e.getPlayer(), System.currentTimeMillis()));
 	}
 	
 	@EventHandler

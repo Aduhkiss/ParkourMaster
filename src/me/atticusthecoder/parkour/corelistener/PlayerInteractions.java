@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import me.atticusthecoder.parkour.Main;
 import me.atticusthecoder.parkour.event.ParkourCompleteEvent;
 import me.atticusthecoder.parkour.event.ParkourStartEvent;
+import me.atticusthecoder.parkour.manager.ParkourManager;
 
 public class PlayerInteractions implements Listener {
 	
@@ -26,12 +27,16 @@ public class PlayerInteractions implements Listener {
 				
 				if(block.getType() == Material.GOLD_PLATE) {
 					// Start the parkour
-					Main.getPlugin().getServer().getPluginManager().callEvent(new ParkourStartEvent(e.getPlayer()));
+					if(!ParkourManager.get().isDoingParkour(e.getPlayer())) {
+						Main.getPlugin().getServer().getPluginManager().callEvent(new ParkourStartEvent(e.getPlayer()));
+					}
 				}
 				
 				if(block.getType() == Material.IRON_PLATE) {
 					// End the parkour
-					Main.getPlugin().getServer().getPluginManager().callEvent(new ParkourCompleteEvent(e.getPlayer()));
+					if(ParkourManager.get().isDoingParkour(e.getPlayer())) {
+						Main.getPlugin().getServer().getPluginManager().callEvent(new ParkourCompleteEvent(e.getPlayer()));
+					}
 				}
 			}
 		}
