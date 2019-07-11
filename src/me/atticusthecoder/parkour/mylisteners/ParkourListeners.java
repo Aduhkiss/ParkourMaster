@@ -8,6 +8,7 @@ import me.atticusthecoder.parkour.common.ParkourData;
 import me.atticusthecoder.parkour.event.ParkourCompleteEvent;
 import me.atticusthecoder.parkour.event.ParkourFailEvent;
 import me.atticusthecoder.parkour.event.ParkourStartEvent;
+import me.atticusthecoder.parkour.manager.NotificationManager;
 import me.atticusthecoder.parkour.manager.ParkourManager;
 import me.atticusthecoder.parkour.util.TimeUtil;
 import net.md_5.bungee.api.ChatColor;
@@ -31,6 +32,9 @@ public class ParkourListeners implements Listener {
 		
 		e.getPlayer().sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "Congrats! You finished the parkour in " + TimeUtil.milliToNormal(data.getRunLength()) + "!");
 		ParkourManager.get().removeFromParkour(e.getPlayer());
+		
+		// Send a notification
+		NotificationManager.get().push(ChatColor.GOLD + "" + ChatColor.BOLD + e.getPlayer().getName() + " finished the parkour in " + TimeUtil.milliToNormal(data.getRunLength()) + "!");
 	}
 	
 	@EventHandler

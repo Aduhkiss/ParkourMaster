@@ -3,3 +3,5 @@ author: MrBeefSteak
 version: 1.0
 main: me.atticusthecoder.parkour.Main
 commands:
+  parkour:
+    description: Parkour command
